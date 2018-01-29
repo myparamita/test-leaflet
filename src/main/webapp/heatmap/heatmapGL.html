@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GeoJSON</title>
+    <link rel="stylesheet" href="../js/leaflet.css"/>
+    <script src="../js/leaflet-src.js"></script>
+    <script type="text/javascript" src="../js/leaflet-webgl-heatmap.js"></script>
+</head>
+<body>
+
+<div id="map" style="width: 600px; height: 400px;"></div>
+<script>
+
+
+
+    var map = L.map('map').setView([44.6674, -63.5703], 13);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        id: 'mapbox.streets'
+    }).addTo(map);
+
+
+    // var baseURL = 'http://{s}.tile.cloudmade.com/{API}/{map_style}/256/{z}/{x}/{y}.png';
+    //
+    // var base = L.tileLayer(baseURL);
+    //
+    // //Halifax, Nova Scotia
+    // var map = L.map('map', {layers: [base]}).setView([44.65, -63.57], 12);
+    //
+    // L.control.scale().addTo(map);
+
+    //custom size for this example, and autoresize because map style has a percentage width
+    var heatmap = new L.WebGLHeatMap({size: 1000, autoresize: true});
+
+    // dataPoints is an array of arrays: [[lat, lng, intensity]...]
+    var dataPoints = [[44.6674, -63.5703, 37], [44.6826, -63.7552, 34], [44.6325, -63.5852, 41],
+        [44.6467, -63.4696, 67], [44.6804, -63.487, 64], [44.6622, -63.5364, 40], [44.603, - 63.743, 52]];
+    for (var i = 0, len = dataPoints.length; i < len; i++) {
+        var point = dataPoints[i];
+        heatmap.addDataPoint(point[0],
+            point[1],
+            point[2]);
+    }
+    // alternatively, you can skip the for loop and add the whole dataset with heatmap.setData(dataPoints)
+
+    map.addLayer(heatmap);
+</script>
+
+
+</body>
+</html>

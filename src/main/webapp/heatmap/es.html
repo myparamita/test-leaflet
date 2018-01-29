@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test es</title>
+      <script type="text/javascript" src="../js/jquery/jquery-1.8.0.min.js"></script>
+      <script type='text/javascript' src='../js/elasticSearch/elasticsearch.jquery.min.js'></script>
+  </head>
+  <body>
+   <h1>query data from es</h1>
+   
+
+    <script>
+        var client = new $.es.Client({
+            hosts: 'http://localhost:9200'
+        });
+
+        client.ping({
+            requestTimeout: 30000,
+        }, function (error) {
+            if (error) {
+                console.error('elasticsearch cluster is down!');
+            } else {
+                console.log('All is well');
+            }
+        });
+
+        client.search({
+            index: 'gis',
+            type: 'points',
+            body: {
+                "query": {
+                    "match_all": {}
+                }
+            }
+        }).then(function (resp) {
+            var hits = resp.hits.hits;
+        }, function (err) {
+            console.trace(err.message);
+        });
+
+    </script>
+  </body>
+</html>
+
