@@ -124,6 +124,7 @@
             }
         });
 
+        //使用GeoHash grid Aggregation查询ES，对number字段按照geohash grid聚合，获取热力图所需数据
         client.search({
             index: 'gis',
             type: 'points',
@@ -133,8 +134,8 @@
                         "filter": {
                             "geo_bounding_box": {
                                 "location": {
-                                    "top_left": "30, 100",
-                                    "bottom_right": "20, 110"
+                                    "top_left": "30, 110",
+                                    "bottom_right": "20, 120"
                                 }
                             }
                         },
@@ -144,6 +145,13 @@
                                     "field": "location",
                                     "precision": 6,
                                     "size": 200000
+                                },
+                                "aggs": {
+                                    "number_sum": {
+                                        "sum": {
+                                            "script": "doc['number']"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -157,6 +165,7 @@
             console.trace(err.message);
         });
 
+        //处理后台查询的数据为heatmap需要格式
         function convertHeatmapData(parsedData) {
 
             var testData = {
@@ -165,12 +174,12 @@
             };
 
             for (index in parsedData) {
-                point=decodeGeoHash(parsedData[index]["key"])
+                point = decodeGeoHash(parsedData[index]["key"])
                 testData.data.push({
                     lat: point["latitude"][2],
                     lng: point["longitude"][2],
                     // count: 1
-                    count: parsedData[index]["doc_count"]
+                    count: parsedData[index]["number_sum"]["value"]
                 })
             }
 
@@ -184,6 +193,8 @@
                 interval[1] = (interval[0] + interval[1]) / 2;
             }
         }
+
+        //geohash解码为经纬度
         function decodeGeoHash(geohash) {
             var BITS = [16, 8, 4, 2, 1];
             var BASE32 = '0123456789bcdefghjkmnpqrstuvwxyz';
@@ -213,7 +224,7 @@
             }
             lat[2] = (lat[0] + lat[1]) / 2;
             lon[2] = (lon[0] + lon[1]) / 2;
-            return { latitude: lat, longitude: lon};
+            return {latitude: lat, longitude: lon};
         }
 
         // make accessible for debugging
