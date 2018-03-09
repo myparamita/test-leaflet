@@ -73,7 +73,6 @@
     window.onload = function () {
 
 
-
         var baseLayer = L.tileLayer(
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
@@ -129,13 +128,30 @@
             index: 'gis',
             type: 'points',
             body: {
-                "query": {
-                    "match_all": {}
-                },
-                "size":10000
+                "aggregations": {
+                    "zoomed": {
+                        "filter": {
+                            "geo_bounding_box": {
+                                "location": {
+                                    "top_left": "30, 100",
+                                    "bottom_right": "20, 110"
+                                }
+                            }
+                        },
+                        "aggregations": {
+                            "zoom1": {
+                                "geohash_grid": {
+                                    "field": "location",
+                                    "precision": 6,
+                                    "size": 200000
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }).then(function (resp) {
-            testData = convertHeatmapData(resp.hits.hits);
+            testData = convertHeatmapData(resp.aggregations.zoomed.zoom1.buckets);
             heatmapLayer.setData(testData);
         }, function (err) {
             console.trace(err.message);
@@ -149,18 +165,56 @@
             };
 
             for (index in parsedData) {
+                point=decodeGeoHash(parsedData[index]["key"])
                 testData.data.push({
-                    lat: parsedData[index]["_source"]["location"]["lat"],
-                    lng: parsedData[index]["_source"]["location"]["lon"],
+                    lat: point["latitude"][2],
+                    lng: point["longitude"][2],
                     // count: 1
-                    count: parsedData[index]["_source"]["count"]
+                    count: parsedData[index]["doc_count"]
                 })
             }
 
             return testData;
         }
 
-
+        function refine_interval(interval, cd, mask) {
+            if (cd & mask) {
+                interval[0] = (interval[0] + interval[1]) / 2;
+            } else {
+                interval[1] = (interval[0] + interval[1]) / 2;
+            }
+        }
+        function decodeGeoHash(geohash) {
+            var BITS = [16, 8, 4, 2, 1];
+            var BASE32 = '0123456789bcdefghjkmnpqrstuvwxyz';
+            var is_even = 1;
+            var lat = [];
+            var lon = [];
+            lat[0] = -90.0;
+            lat[1] = 90.0;
+            lon[0] = -180.0;
+            lon[1] = 180.0;
+            var lat_err = 90.0;
+            var lon_err = 180.0;
+            for (var i = 0; i < geohash.length; i++) {
+                var c = geohash[i];
+                var cd = BASE32.indexOf(c);
+                for (var j = 0; j < 5; j++) {
+                    var mask = BITS[j];
+                    if (is_even) {
+                        lon_err /= 2;
+                        refine_interval(lon, cd, mask);
+                    } else {
+                        lat_err /= 2;
+                        refine_interval(lat, cd, mask);
+                    }
+                    is_even = !is_even;
+                }
+            }
+            lat[2] = (lat[0] + lat[1]) / 2;
+            lon[2] = (lon[0] + lon[1]) / 2;
+            return { latitude: lat, longitude: lon};
+        }
 
         // make accessible for debugging
         layer = heatmapLayer;

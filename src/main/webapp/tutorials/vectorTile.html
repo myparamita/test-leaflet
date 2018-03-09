@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quick Start - Leaflet</title>
+    <link rel="stylesheet" href="../js/leaflet/leaflet.css"/>
+    <script src="../js/leaflet/leaflet-src.js"></script>
+    <script src="../js/leaflet/leaflet-tilelayer-wmts-src.js"></script>
+</head>
+<body>
+
+<div id="map" style="width: 600px; height: 400px;"></div>
+<script>
+
+//    //添加一个map
+   var map = L.map('map', {
+       crs: L.CRS.EPSG4326,
+       center: [36, -100],
+       zoom: 2
+   });
+
+   /**wms服务*/
+   // var wmsLayer = L.tileLayer.wms('http://localhost:8082/geoserver/topp/wms?',{
+   //     layers: 'topp:states'
+   // }).addTo(map);
+
+
+   /*********WMTS服务,需要leaflet-tilelayer-wmts-src.js提供支持***********/
+   var url = 'http://localhost:8082/geoserver/gwc/service/wmts?';
+   var emap = new L.TileLayer.WMTS(url, {
+       layer: "topp:states",
+       style: "normal",
+       tilematrixSet: "PM",
+       format: "image/jpeg"
+   });
+   // var emap = new L.TileLayer.WMTS(url, {
+   //     layer: "topp:states",
+   //     tilematrixSet: "EPSG:4326",
+   //     tileSize: 256
+   // });
+   map.addLayer(emap);
+
+// http://GEOSERVER/URL/gwc/service/wmts?...
+// http://myserver.com:8080/geoserver/gwc/service/wmts?request=getcapabilities
+
+
+    // var map = L.map('map').setView([36, -100], 2);
+    //
+    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+    //
+    // var myWMTSlayer = new L.TileLayer.WMTS('http://gis.sinica.edu.tw/tgos/wmts', {layer: "福衛二號混合圖", format: "image/jpeg", style: "default", tilematrixSet: "GoogleMapsCompatible",});
+    //
+    // map.addLayer(myWMTSlayer);
+
+
+
+// var map = L.map('map').setView([23.639511, 120.954393], 7);
+//
+// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+//
+// var myWMTSlayer = new L.TileLayer.WMTS('http://gis.sinica.edu.tw/tgos/wmts', {layer: "福衛二號混合圖", format: "image/jpeg", style: "default", tilematrixSet: "GoogleMapsCompatible",});
+//
+// map.addLayer(myWMTSlayer);
+
+</script>
+</body>
+</html>
