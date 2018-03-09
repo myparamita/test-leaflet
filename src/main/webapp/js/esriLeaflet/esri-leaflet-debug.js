@@ -1,4 +1,4 @@
-/* esri-leaflet - v2.1.2 - Thu Jan 04 2018 16:40:13 GMT-0800 (PST)
+/* esri-leaflet - v2.1.2 - Thu Feb 01 2018 11:14:39 GMT+0800 (CST)
  * Copyright (c) 2018 Environmental Systems Research Institute, Inc.
  * Apache-2.0 */
 (function (global, factory) {
