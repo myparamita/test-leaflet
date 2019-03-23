@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Leaflet Heatmap Layer Plugin, using data querying from elasticsearch</title>
+    <title>using Leaflet.heat to show data from es</title>
     <style>
         body, html {
             margin: 0;
@@ -54,8 +54,8 @@
     </style>
     <link rel="stylesheet" href="../js/leaflet/leaflet.css"/>
     <script src="../js/leaflet/leaflet-src.js"></script>
-    <script src="../js/heatmap/heatmap.js"></script>
-    <script src="../js/heatmap/leaflet-heatmap.js"></script>
+    <!--<script src="../js/heatmap/heatmap.js"></script>-->
+    <script src="../js/heatmap/leaflet-heat.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-1.8.0.min.js"></script>
     <script type='text/javascript' src='../js/elasticSearch/elasticsearch.jquery.min.js'></script>
 </head>
@@ -72,8 +72,6 @@
 <script>
     window.onload = function () {
 
-
-
         var baseLayer = L.tileLayer(
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
@@ -81,49 +79,28 @@
             }
         );
 
-        var cfg = {
-            // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-            "radius": 5,
-            "maxOpacity": .8,
-            // scales the radius based on map zoom
-            // "scaleRadius": true,
-            // if set to false the heatmap uses the global maximum for colorization
-            // if activated: uses the data maximum within the current map boundaries
-            //   (there will always be a red spot with useLocalExtremas true)
-            "useLocalExtrema": true,
-            // which field name in your data represents the latitude - default "lat"
-            latField: 'lat',
-            // which field name in your data represents the longitude - default "lng"
-            lngField: 'lng',
-            // which field name in your data represents the data value - default "value"
-            valueField: 'count'
-        };
-
-
-        var heatmapLayer = new HeatmapOverlay(cfg);
-
         var map = new L.Map('map', {
             center: new L.LatLng(25, 105),
             zoom: 6,
-            layers: [baseLayer, heatmapLayer]
+            layers: [baseLayer]
         });
-
-        //-------query es data
-        var testData = null;
 
         var client = new $.es.Client({
             hosts: 'http://localhost:9200'
         });
 
-        client.ping({
-            requestTimeout: 300000,
-        }, function (error) {
-            if (error) {
-                console.error('elasticsearch cluster is down!');
-            } else {
-                console.log('All is well');
+        var options = {
+            // minOpacity
+            radius: 20,
+            blur: 15,
+            maxZoom: 10,
+            max: 2,
+            gradient: {
+                0.0: 'green',
+                0.5: 'yellow',
+                1.0: 'red'
             }
-        });
+        };
 
         client.search({
             index: 'points_geohash',
@@ -132,38 +109,30 @@
                 "query": {
                     "match_all": {}
                 },
-                "size":10000
+                "size": 10000
             }
         }).then(function (resp) {
-            testData = convertHeatmapData(resp.hits.hits);
-            heatmapLayer.setData(testData);
+            var testData = convertHeatmapData(resp.hits.hits);
+            debugger
+            var heat = L.heatLayer(testData, options).addTo(map);
+
         }, function (err) {
             console.trace(err.message);
         });
 
         function convertHeatmapData(parsedData) {
 
-            var testData = {
-                max: 10,
-                data: []
-            };
+            var testData = [];
 
             for (index in parsedData) {
-                testData.data.push({
-                    lat: parsedData[index]["_source"]["location"]["lat"],
-                    lng: parsedData[index]["_source"]["location"]["lon"],
-                    // count: 1
-                    count: parsedData[index]["_source"]["count"]
-                })
+                testData.push([parsedData[index]["_source"]["location"]["lat"],
+                    parsedData[index]["_source"]["location"]["lon"],
+                    0.3]);
             }
 
             return testData;
         }
 
-
-
-        // make accessible for debugging
-        layer = heatmapLayer;
     };
 </script>
 </body>

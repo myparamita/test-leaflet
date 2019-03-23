@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>test es rest by ajax</title>
+    <script type="text/javascript" src="../js/jquery/jquery-1.8.0.min.js"></script>
+    <script type='text/javascript' src='../js/elasticSearch/elasticsearch.jquery.min.js'></script>
+</head>
+<body>
+<h1>test es rest by ajax</h1>
+
+<script>
+    window.onload = function () {
+
+        $.ajax({
+            type:"POST",
+            url:"http://localhost:9200/province_logstash/_search",
+            contentType:"application/json;charset=utf-8",
+            data:'{\"query\":{\"match_all\":{}},\"size\":10000}',
+            success:function(resp){
+                debugger
+                console.log("done");
+            }
+        });
+    };
+</script>
+</body>
+</html>

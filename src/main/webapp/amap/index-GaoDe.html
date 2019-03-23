@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../js/leaflet/leaflet.css">
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body,
+        #map {
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript" src="../js/leaflet/leaflet.js"></script>
+    <script type="text/javascript" src='../js/leaflet/leaflet.ChineseTmsProviders.js'></script>
+    <script type="text/javascript" src='../js/jquery/jquery-3.3.1.js'></script>
+</head>
+
+<body>
+<div id='map'></div>
+</body>
+<script type="text/javascript">
+    var normalm = L.tileLayer.chinaProvider('GaoDe.Normal.Map', {
+        maxZoom: 18,
+        minZoom: 5
+    });
+    var imgm = L.tileLayer.chinaProvider('GaoDe.Satellite.Map', {
+        maxZoom: 18,
+        minZoom: 5
+    });
+    var imga = L.tileLayer.chinaProvider('GaoDe.Satellite.Annotion', {
+        maxZoom: 18,
+        minZoom: 5
+    });
+
+    var normal = L.layerGroup([normalm]),
+        image = L.layerGroup([imgm, imga]);
+
+    var baseLayers = {
+        "地图": normal,
+        "影像": image,
+    }
+
+    var map = L.map("map", {
+        center: [31.59, 120.29],
+        zoom: 12,
+        layers: [normal],
+        zoomControl: false
+    });
+
+    L.control.layers(baseLayers, null).addTo(map);
+    L.control.zoom({
+        zoomInTitle: '放大',
+        zoomOutTitle: '缩小'
+    }).addTo(map);
+
+    var point = L.latLng(31.596,120.296);
+    L.circle(point, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 5
+    }).addTo(map);
+
+    $.ajax({
+        url: "https://restapi.amap.com/v3/direction/transit/integrated?origin=116.481499,39.990475&destination=116.465063,39.999538&city=010&output=xml&key=f38cd06cc563f92cc7a42bd14f13c596",
+        type: 'POST',
+        contentType:"application/json;charset=utf-8",
+        success: function(result) {
+            debugger
+        },
+        error: function(e) {
+            alert('error:' + JSON.stringify(e));
+        }
+
+    });
+</script>
+
+</html>

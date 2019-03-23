@@ -126,30 +126,30 @@
 
         //使用GeoHash grid Aggregation查询ES，对number字段按照geohash grid聚合，获取热力图所需数据
         client.search({
-            index: 'gis',
-            type: 'points',
+            index: 'points_geohash',
+            type: 'doc',
             body: {
-                "aggregations": {
-                    "zoomed": {
-                        "filter": {
-                            "geo_bounding_box": {
-                                "location": {
-                                    "top_left": "30, 110",
-                                    "bottom_right": "20, 120"
+                "aggregations" : {
+                    "zoomed" : {
+                        "filter" : {
+                            "geo_bounding_box" : {
+                                "location" : {
+                                    "top_left" : "30, 100",
+                                    "bottom_right" : "25, 105"
                                 }
                             }
                         },
-                        "aggregations": {
-                            "zoom1": {
-                                "geohash_grid": {
+                        "aggs":{
+                            "zoom1":{
+                                "geohash_grid" : {
                                     "field": "location",
                                     "precision": 6,
-                                    "size": 200000
+                                    "size":200000
                                 },
                                 "aggs": {
-                                    "number_sum": {
+                                    "result": {
                                         "sum": {
-                                            "script": "doc['number']"
+                                            "field": "no"
                                         }
                                     }
                                 }
@@ -159,6 +159,7 @@
                 }
             }
         }).then(function (resp) {
+            debugger
             testData = convertHeatmapData(resp.aggregations.zoomed.zoom1.buckets);
             heatmapLayer.setData(testData);
         }, function (err) {
@@ -173,13 +174,14 @@
                 data: []
             };
 
+            debugger
             for (index in parsedData) {
                 point = decodeGeoHash(parsedData[index]["key"])
                 testData.data.push({
                     lat: point["latitude"][2],
                     lng: point["longitude"][2],
                     // count: 1
-                    count: parsedData[index]["number_sum"]["value"]
+                    count: parsedData[index]["doc_count"] //可设置为聚合结果字段
                 })
             }
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>test es</title>
+    <script type="text/javascript" src="../js/jquery/jquery-1.8.0.min.js"></script>
+    <link rel="stylesheet" href="../js/leaflet/leaflet.css"/>
+    <link rel="stylesheet" href="../css/map.css"/>
+    <script src="../js/leaflet/leaflet-src.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<h1>query data from es</h1>
+
+
+<script>
+
+	var mymap = L.map('map', {
+		center: [40.695, -74],
+		zoom: 11
+	});
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+	$.ajax({
+		url: "http://localhost:9090/restaurants",
+		type: 'GET',
+		contentType: "application/json;charset=utf-8",
+		success: function (result) {
+			resultObject = JSON.parse(result)
+			var hits = resultObject.hits.hits;
+
+			for (var i = 0; i < hits.length; i++) {
+				var point = L.latLng(hits[i]['_source'].location.lat, hits[i]['_source'].location.lon);
+				L.circleMarker(point, {
+					radius: 6,
+					color: 'red',
+                    weight:1
+				}).addTo(mymap);
+			}
+
+		},
+		error: function (e) {
+			alert('error:' + JSON.stringify(e));
+		}
+
+	});
+
+
+</script>
+</body>
+</html>
+

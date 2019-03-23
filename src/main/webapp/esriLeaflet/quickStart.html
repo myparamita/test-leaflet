@@ -19,8 +19,21 @@
 
 <script>
     var map = L.map("map").setView([37.75, -122.23], 10);
-
     L.esri.basemapLayer("Topographic").addTo(map);
+
+    map.locate( {
+        setView:true,
+        maxZoom:14
+    })
+    map.on("locationfound",function(e){
+        alert("yy");
+        var radius=e.accuracy/2;
+        L.marker(e.latlng).addTo(map);
+    })
+    map.on("locationerror",function(e){
+        alert("nn");
+    })
+
 </script>
 
 </body>

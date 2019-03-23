@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>test es</title>
+    <script type="text/javascript" src="../js/jquery/jquery-1.8.0.min.js"></script>
+    <link rel="stylesheet" href="../js/leaflet/leaflet.css"/>
+    <link rel="stylesheet" href="../css/map.css"/>
+    <script src="../js/leaflet/leaflet-src.js"></script>
+</head>
+<body>
+<button style="position: absolute; font-size: 14px; top: 10px; left: 60px; z-index: 999" onclick="showAllData()">
+    显示Cell
+</button>
+
+<div id="map">
+</div>
+<script>
+
+	var mymap = L.map('map', {
+		center: [22.53, 114.05],
+		zoom: 11
+	});
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+	var markerLayer = new L.LayerGroup();
+	var hilightLayer = new L.LayerGroup();
+	markerLayer.addTo(mymap);
+	hilightLayer.addTo(mymap);
+
+	function showAllData() {
+
+		var bound=mymap.getBounds();
+		var northEast=bound.getNorthEast().lat+","+bound.getNorthEast().lng;
+		var southWest=bound.getSouthWest().lat+","+bound.getSouthWest().lng;
+		var url = "http://localhost:9090/restaurants/getCells?northEast="+northEast+"&southWest="+southWest;
+		clearData();
+		$.ajax({
+			url: url,
+			type: 'GET',
+			contentType: "application/json;charset=utf-8",
+			success: function (result) {
+				var resultObject = JSON.parse(result);
+				var cover= eval(resultObject.hits.cover);
+				console.log("cell count: "+cover.length)
+
+				for(var j=0;j<cover.length;j++){
+					var polygon = L.polygon(cover[j]);
+					hilightLayer.addLayer(polygon);
+				}
+
+			},
+			error: function (e) {
+				alert('error:' + JSON.stringify(e));
+			}
+
+		});
+	}
+
+	function clearData() {
+		markerLayer.clearLayers();
+		hilightLayer.clearLayers();
+	}
+
+</script>
+</body>
+</html>
+

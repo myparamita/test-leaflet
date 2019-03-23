@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>test es</title>
+    <script type="text/javascript" src="../js/jquery/jquery-1.8.0.min.js"></script>
+    <link rel="stylesheet" href="../js/leaflet/leaflet.css"/>
+    <link rel="stylesheet" href="../css/map.css"/>
+    <script src="../js/leaflet/leaflet-src.js"></script>
+</head>
+<body>
+<button style="position: absolute; font-size: 14px; top: 10px; left: 60px; z-index: 999" onclick="showAllData()">
+    显示全部数据
+</button>
+
+<button style="position: absolute; font-size: 14px; top: 10px; left: 150px; z-index: 999" onclick="clearData()">
+    清空数据
+</button>
+
+<button style="position: absolute; font-size: 14px; top: 10px; left: 210px; z-index: 999" onclick="selectCell()">
+    点击查询同网格数据
+</button>
+
+<button style="position: absolute; font-size: 14px; top: 10px; left: 350px; z-index: 999" onclick="selectNearManyLevels()">
+    点击查询周边数据(最优)
+</button>
+
+<button style="position: absolute; font-size: 14px; top: 10px; left: 530px; z-index: 999" onclick="selectNearSingleLevel()">
+    点击查询周边数据（同等级）
+</button>
+
+<div id="map">
+</div>
+<script>
+
+	var mymap = L.map('map', {
+		center: [40.695, -74],
+		zoom: 11
+	});
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+	var markerLayer = new L.LayerGroup();
+	var hilightLayer = new L.LayerGroup();
+	markerLayer.addTo(mymap);
+	hilightLayer.addTo(mymap);
+
+	function showAllData() {
+		clearData();
+		$.ajax({
+			url: "http://localhost:9090/restaurants",
+			type: 'GET',
+			contentType: "application/json;charset=utf-8",
+			success: function (result) {
+				var resultObject = JSON.parse(result);
+				var hits = resultObject.hits.hits;
+
+				for (var i = 0; i < hits.length; i++) {
+					var point = L.latLng(hits[i]['_source'].location.lat, hits[i]['_source'].location.lon);
+					markerLayer.addLayer(L.circleMarker(point, {
+						radius: 6,
+						color: 'blue',
+						weight: 1
+					}));
+				}
+
+			},
+			error: function (e) {
+				alert('error:' + JSON.stringify(e));
+			}
+
+		});
+	}
+
+	function clearData() {
+		markerLayer.clearLayers();
+		hilightLayer.clearLayers();
+	}
+
+	function selectCell() {
+		mymap.off('click');
+		mymap.on('click', function(e) {
+			hilightLayer.clearLayers();
+			$.ajax({
+				url: "http://localhost:9090/restaurants/getSameCellPoints?lat="+e.latlng.lat+"&lng="+e.latlng.lng,
+				type: 'GET',
+				contentType: "application/json;charset=utf-8",
+				success: function (result) {
+					debugger
+					var resultObject = JSON.parse(result);
+					var hits = resultObject.hits.hits;
+					var poly= eval(resultObject.hits.poly);
+
+					for (var i = 0; i < hits.length; i++) {
+						var point = L.latLng(hits[i]['_source'].location.lat, hits[i]['_source'].location.lon);
+						hilightLayer.addLayer(L.circleMarker(point, {
+							radius: 6,
+							color: 'red',
+							weight: 1
+						}));
+					}
+
+					var polygon = L.polygon(poly);
+					hilightLayer.addLayer(polygon);
+				},
+				error: function (e) {
+					alert('error:' + JSON.stringify(e));
+				}
+
+			});
+
+
+		});
+	}
+
+
+	function selectNearManyLevels() {
+		selectNear(true);
+	}
+
+	function selectNearSingleLevel() {
+		selectNear(false);
+	}
+
+	function selectNear(manyLevels) {
+		mymap.off('click');
+		mymap.on('click', function(e) {
+			hilightLayer.clearLayers();
+			hilightLayer.addLayer(L.circle([e.latlng.lat, e.latlng.lng], {radius: 1000}));
+			$.ajax({
+				url: "http://localhost:9090/restaurants/getNearPoints?lat="+e.latlng.lat+"&lng="+e.latlng.lng+"&distance=1000&manyLevels="+manyLevels,
+				type: 'GET',
+				contentType: "application/json;charset=utf-8",
+				success: function (result) {
+					var resultObject = JSON.parse(result);
+					var hits = resultObject.hits.hits;
+					var cover= eval(resultObject.hits.cover);
+					console.log("cell count: "+cover.length);
+
+					for(var j=0;j<cover.length;j++){
+						var polygon = L.polygon(cover[j]);
+						hilightLayer.addLayer(polygon);
+					}
+
+					for (var i = 0; i < hits.length; i++) {
+						var point = L.latLng(hits[i]['_source'].location.lat, hits[i]['_source'].location.lon);
+						hilightLayer.addLayer(L.circleMarker(point, {
+							radius: 6,
+							color: 'red',
+							weight: 1
+						}));
+					}
+				},
+				error: function (e) {
+					alert('error:' + JSON.stringify(e));
+				}
+
+			});
+
+
+		});
+	}
+
+</script>
+</body>
+</html>
+

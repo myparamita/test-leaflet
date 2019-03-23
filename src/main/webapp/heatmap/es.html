@@ -14,26 +14,28 @@
         var client = new $.es.Client({
             hosts: 'http://localhost:9200'
         });
-
-        client.ping({
-            requestTimeout: 30000,
-        }, function (error) {
-            if (error) {
-                console.error('elasticsearch cluster is down!');
-            } else {
-                console.log('All is well');
-            }
-        });
+        //
+        // client.ping({
+        //     requestTimeout: 30000,
+        // }, function (error) {
+        //     if (error) {
+        //         console.error('elasticsearch cluster is down!');
+        //     } else {
+        //         console.log('All is well');
+        //     }
+        // });
+        debugger
 
         client.search({
-            index: 'gis',
-            type: 'points',
+            index: 'province_logstash',
+            type: 'doc',
             body: {
                 "query": {
                     "match_all": {}
                 }
             }
         }).then(function (resp) {
+            debugger
             var hits = resp.hits.hits;
         }, function (err) {
             console.trace(err.message);
