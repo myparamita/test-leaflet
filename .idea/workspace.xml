@@ -6,47 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc5b3105-52b5-4116-9aeb-4677745486ad" name="Default" comment="test heatmap.js &#10;using data from es">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/amap/drive.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/amap/index-GaoDe.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/amap/map1.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/amap/start_amap.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/css/map.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/es/es-rest-ajax.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/es/es-rest-java.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/es/showData.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/esriLeaflet/quickStart3.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/heatmap/heatmap-es2.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/heatmap/leaflet-heat.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/leaflet/leaflet.ChineseTmsProviders.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/pg/lbs_pg.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/s2/showCell10.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/s2/showPoints.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/s2/showPointsWithCell.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/mall/js/images/layers-2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/mall/js/images/layers.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/mall/js/images/marker-icon-2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/mall/js/images/marker-icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/mall/js/images/marker-shadow.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/js/images/layers-2x.png" afterPath="$PROJECT_DIR$/src/main/webapp/js/leaflet/images/layers-2x.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/js/images/layers.png" afterPath="$PROJECT_DIR$/src/main/webapp/js/leaflet/images/layers.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/js/images/marker-icon-2x.png" afterPath="$PROJECT_DIR$/src/main/webapp/js/leaflet/images/marker-icon-2x.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/js/images/marker-icon.png" afterPath="$PROJECT_DIR$/src/main/webapp/js/leaflet/images/marker-icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/js/images/marker-shadow.png" afterPath="$PROJECT_DIR$/src/main/webapp/js/leaflet/images/marker-shadow.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_3_8_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_3_8_1.xml" />
+    <list default="true" id="cc5b3105-52b5-4116-9aeb-4677745486ad" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/esriLeaflet/quickStart.html" afterPath="$PROJECT_DIR$/src/main/webapp/esriLeaflet/quickStart.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/heatmap/es.html" afterPath="$PROJECT_DIR$/src/main/webapp/heatmap/es.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/heatmap/heatmap-es-geohash.html" afterPath="$PROJECT_DIR$/src/main/webapp/heatmap/heatmap-es-geohash.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/heatmap/heatmap-es.html" afterPath="$PROJECT_DIR$/src/main/webapp/heatmap/heatmap-es.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/tutorials/customMarker.html" afterPath="$PROJECT_DIR$/src/main/webapp/tutorials/customMarker.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/tutorials/geojson.html" afterPath="$PROJECT_DIR$/src/main/webapp/tutorials/geojson.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/mall/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/target/mall/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/mall/tutorials/customMarker.html" afterPath="$PROJECT_DIR$/target/mall/tutorials/customMarker.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/mall/tutorials/geojson.html" afterPath="$PROJECT_DIR$/target/mall/tutorials/geojson.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-leaflet.iml" afterPath="$PROJECT_DIR$/test-leaflet.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -65,8 +27,8 @@
       <file leaf-file-name="showPointsWithCell.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/s2/showPointsWithCell.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="121" column="5" lean-forward="true" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+            <state relative-caret-position="76">
+              <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -78,11 +40,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="showCell10.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="showCell10.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/s2/showCell10.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="32" column="30" lean-forward="false" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+            <state relative-caret-position="657">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="684">
+              <caret line="36" column="60" lean-forward="false" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -141,8 +113,8 @@
       <file leaf-file-name="showPoints.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/s2/showPoints.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state relative-caret-position="228">
+              <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -202,7 +174,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/heatmap/heatmap-es.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/heatmap/heatmap-es2.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/amap/leaflet-amap.html" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/webapp/amap/drive.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/amap/start_amap.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/esriLeaflet/quickStart.html" />
@@ -210,8 +181,11 @@
         <option value="$PROJECT_DIR$/src/main/webapp/s2/es-rest-java.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/s2/showData.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/amap/index-GaoDe.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/s2/showPointsWithCell.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/s2/showCell16.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/s2/showPoints.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/s2/showPointsWithCell.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/s2/showCell10.html" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -261,7 +235,7 @@
       </PATH>
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="840" />
     <option name="height" value="962" />
@@ -314,22 +288,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="esriLeaflet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="test-leaflet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test-leaflet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="heatmap" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="test-leaflet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="test-leaflet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="s2" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -348,7 +306,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -960,7 +918,7 @@
       <workItem from="1552442355376" duration="923000" />
       <workItem from="1552880023584" duration="14759000" />
       <workItem from="1553129717195" duration="584000" />
-      <workItem from="1553130564988" duration="6713000" />
+      <workItem from="1553130564988" duration="9319000" />
     </task>
     <task id="LOCAL-00001" summary="test heatmap.js &#10;using data from es">
       <created>1517206521174</created>
@@ -997,16 +955,30 @@
       <option name="project" value="LOCAL" />
       <updated>1520584711935</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="test google s2">
+      <created>1553344211112</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1553344211112</updated>
+    </task>
+    <task id="LOCAL-00007" summary="test google s2">
+      <created>1553344341645</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1553344341645</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202240000" />
+    <option name="totallyTimeSpent" value="204846000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="840" height="962" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="962" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38809523" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21428572" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.50238097" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842582" sideWeight="0.49761903" order="2" side_tool="false" content_ui="tabs" />
@@ -1052,7 +1024,8 @@
     <MESSAGE value="heatmap data from elasticsearch geohash grid aggregation" />
     <MESSAGE value="add js lib" />
     <MESSAGE value="geohash grid aggregation with target field" />
-    <option name="LAST_COMMIT_MESSAGE" value="geohash grid aggregation with target field" />
+    <MESSAGE value="test google s2" />
+    <option name="LAST_COMMIT_MESSAGE" value="test google s2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1280,13 +1253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/es/es-rest-ajax.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -1334,6 +1300,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="3522" column="7" lean-forward="false" selection-start-line="3522" selection-start-column="7" selection-end-line="3522" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1385,10 +1352,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/s2/showPoints.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/s2/showPointsWithCell.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="121" column="5" lean-forward="true" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+        <state relative-caret-position="76">
+          <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#button#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1399,18 +1374,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/s2/showPoints.html">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/s2/showCell10.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state relative-caret-position="657">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/s2/showCell10.html">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="32" column="30" lean-forward="false" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        <state relative-caret-position="684">
+          <caret line="36" column="60" lean-forward="false" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
           <folding />
         </state>
       </provider>
